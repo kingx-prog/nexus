@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lending Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #007bff;
+      font-size: 36px;
+    }
+
+    .card {
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .card-content p {
+      margin: 10px 0;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .icon {
+      font-size: 36px;
+      margin-right: 10px;
+    }
+
+    .service {
+      text-align: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-icon {
+      font-size: 60px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .service-title {
+      font-weight: bold;
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      border-radius: 15px;
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-nav a:hover {
+      color: #ffc107;
+    }
+
+    .footer-icons {
+      font-size: 24px;
+      margin: 0 15px;
+      color: #fff;
+      transition: transform 0.3s;
+    }
+
+    .footer-icons:hover {
+      transform: translateY(-3px);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .file-upload {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .file-upload input[type='file'] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1><i class="fas fa-coins icon"></i>Lending</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <h2><i class="fab fa-bitcoin icon"></i> Available to Lend</h2>
+          <div class="card-content">
+            <p><strong>Bitcoin (BTC):</strong> 10 BTC</p>
+            <p><strong>Ethereum (ETH):</strong> 100 ETH</p>
+            <p><strong>Tether (USDT):</strong> $10,000 USDT</p>
+            <p><strong>Naira (NGN):</strong> ₦1,000,000 NGN</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <h2><i class="fas fa-exchange-alt icon"></i> Lend Now</h2>
+          <div class="card-content">
+            <div class="form-group">
+              <label for="cryptocurrency">Select Currency:</label>
+              <select class="form-control" id="cryptocurrency" onchange="updateAvailableBalance()">
+                <option value="btc">Bitcoin (BTC)</option>
+                <option value="eth">Ethereum (ETH)</option>
+                <option value="usdt">Tether (USDT)</option>
+                <option value="ngn">Naira (NGN)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="amount">Enter Amount to Lend:</label>
+              <input type="number" class="form-control" id="amount" placeholder="Amount" oninput="updateAvailableBalance()">
+            </div>
+            <div class="form-group" id="collateral-field" style="display: none;">
+              <label for="collateral">Collateral (at least 80% of amount):</label>
+              <input type="text" class="form-control" id="collateral" readonly>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" onclick="calculateLoan()">Calculate Loan</button>
+            </div>
+            <div class="form-group">
+              <label for="image-file" style="color: green;">Upload Image:</label>
+              <div class="file-upload">
+                <input type="file" id="image-file" accept="image/jpeg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="passport-file" style="color: green;">Upload Passport:</label>
+              <div class="file-upload">
+                <input type="file" id="passport-file" accept="image/jpeg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nin-file" style="color: green;">Upload NIN Picture:</label>
+              <div class="file-upload">
+                <input type="file" id="nin-file" accept="image/jpeg">
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" onclick="promptForTransferDetails()">Issue Loan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div>
+      <p>&copy; 2024 Lending Corp. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function calculateLoan() {
+      var amount = parseFloat(document.getElementById('amount').value);
+      var collateralAmount = 0.8 * amount; // Calculate 80% of the borrowed amount as collateral
+
+      // Update collateral input field with the calculated amount
+      document.getElementById('collateral').value = collateralAmount.toFixed(2);
+
+      // Show collateral in the UI
+      document.getElementById('collateral-field').style.display = 'block';
+    }
+
+    function updateAvailableBalance() {
+      var selectedCurrency = document.getElementById('cryptocurrency').value;
+      var availableBalance;
+
+      // Here, you can implement the logic to fetch the available balance for the selected account
+      // For demonstration purposes, let's just set some dummy available balances
+      switch(selectedCurrency) {
+        case 'btc':
+          availableBalance = 10; // Example: 10 BTC available
+          break;
+        case 'eth':
+          availableBalance = 100; // Example: 100 ETH available
+          break;
+        case 'usdt':
+          availableBalance = 10000; // Example: $10,000 USDT available
+          break;
+        case 'ngn':
+          availableBalance = 1000000; // Example: ₦1,000,000 NGN available
+          break;
+        default:
+          availableBalance = 0;
+      }
+
+      // Update the available balance field
+      document.getElementById('available-balance').value = availableBalance.toFixed(2);
+    }
+
+    function promptForTransferDetails() {
+      var imageFile = document.getElementById("image-file").files[0];
+      var passportFile = document.getElementById("passport-file").files[0];
+      var ninFile = document.getElementById("nin-file").files[0];
+
+      if (imageFile && passportFile && ninFile) {
+        // You can simulate funding the account by displaying an alert
+        alert("Your account will be funded shortly. Thank you!");
+      } else {
+        alert("All documents are required to proceed with the loan.");
+      }
+    }
+  </script>
+</body>
+</html>

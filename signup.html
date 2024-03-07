@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Online Naira Wallet</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: #5d8ec0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      margin-top: 100px;
+    }
+    .card {
+      background-color: #161414;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .card-title {
+      color: #007bff;
+    }
+    .btn-signup {
+      background-color: #007bff;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 30px;
+      font-size: 18px;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+    .btn-signup:hover {
+      background-color: #0056b3;
+    }
+    .form-group {
+      position: relative;
+    }
+    .form-control-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #ccc;
+    }
+    .form-control-icon:hover {
+      color: #007bff;
+      cursor: pointer;
+    }
+    .password-rules {
+      font-size: 14px;
+      color: #ccc;
+    }
+    .error-message {
+      color: red;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body p-5">
+            <h3 class="card-title text-center mb-4">Create an Account</h3>
+            <form id="signupForm">
+              <div class="form-group">
+                <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                <i class="fas fa-user form-control-icon"></i>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                <i class="fas fa-envelope form-control-icon"></i>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <i class="fas fa-lock form-control-icon toggle-password"></i>
+                <span class="error-message" id="password-error"></span>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="bvn" placeholder="BVN number" required>
+                <i class="fas fa-id-card form-control-icon"></i>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="NIN" placeholder="Enter NIN" required>
+                <i class="fas fa-id-badge form-control-icon"></i>
+              </div>
+              <small class="password-rules">Password must be at least 8 characters long and contain at least one special character.</small>
+              <button type="submit" class="btn btn-primary btn-block btn-signup">Sign Up</button>
+            </form>
+            <p class="text-center mt-3" style="color: #fff;">Already have an account? <a href="login.html">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Toggle password visibility
+    $('.toggle-password').click(function() {
+      $(this).toggleClass('fa-eye fa-eye-slash');
+      var input = $($(this).prev());
+      if (input.attr('type') === 'password') {
+        input.attr('type', 'text');
+      } else {
+        input.attr('type', 'password');
+      }
+    });
+
+    // Form submission event listener
+    $('#signupForm').submit(function(event) {
+      event.preventDefault(); // Prevent form submission
+      // Fetch form data
+      var fullName = $('#fullName').val();
+      var email = $('#email').val();
+      var password = $('#password').val();
+      var bvn = $('#bvn').val();
+      var nin = $('#NIN').val();
+      // Perform form validation
+      var passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[0-9])(?=.*[A-Z]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        $('#password-error').text('Password must be at least 8 characters long and contain at least one special character.');
+        return false;
+      }
+      // Submit form data to server (not implemented in this example)
+      console.log('Full Name:', fullName);
+      console.log('Email:', email);
+      console.log('Password:', password);
+      console.log('BVN:', bvn);
+      console.log('NIN:', nin);
+      // Redirect to dashboard or perform appropriate action upon successful signup
+      // For demonstration purposes, redirecting to a dummy dashboard page
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus to Nexus transfer</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #021d38;
+      margin: 0;
+      padding: 0;
+      background-image: url('./nexus.jpg');
+background-size: contain;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group-prepend .input-group-text {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: #fff;
+    }
+
+    .input-group-prepend .input-group-text:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2><i class="fas fa-exchange-alt icon"></i> Transfer Funds (Nexus to Nexus)</h2>
+      <div class="card-content">
+        <div class="form-group">
+          <label for="transferAmount">Transfer Amount:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="number" class="form-control" id="transferAmount" placeholder="Enter amount">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="recipientAccount">Recipient Account:</label>
+          <input type="text" class="form-control" id="recipientAccount" placeholder="Enter recipient account">
+        </div>
+        <button class="btn btn-primary btn-block" id="confirmTransferBtn">Confirm Transfer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap and Font Awesome CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  <!-- Transfer Funds JavaScript -->
+  <script>
+    document.getElementById("confirmTransferBtn").addEventListener("click", function() {
+      var transferAmount = document.getElementById("transferAmount").value;
+      var recipientAccount = document.getElementById("recipientAccount").value;
+
+      // Perform validation
+      if (transferAmount.trim() === "" || recipientAccount.trim() === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Confirmation message
+      var confirmMsg = "Are you sure you want to transfer $" + transferAmount + " to account " + recipientAccount + "?";
+      if (confirm(confirmMsg)) {
+        // Here you can implement the actual transfer logic
+        alert("Transfer successful!"); // For demonstration purposes
+        // Clear input fields after successful transfer
+        document.getElementById("transferAmount").value = "";
+        document.getElementById("recipientAccount").value = "";
+      }
+    });
+  </script>
+</body>
+</html>

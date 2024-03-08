@@ -8,48 +8,62 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
       margin: 0;
       padding: 0;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    .navbar {
+      background-color: #06053a;
+      border-bottom: 1px solid #031f3d;
+      padding: 20px 0;
     }
 
-    .header {
-      text-align: left;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-    }
-
-    .header h1 {
-      color: #007bff;
-      margin-left: 10px;
+    .navbar-brand {
+      color: #fff;
+      font-weight: bold;
       font-size: 24px;
     }
 
-    .header-icons {
-      margin-left: auto;
+    .navbar-brand:hover {
+      color: #fff;
     }
 
     .header-icons i {
-      margin-left: 10px;
       font-size: 24px;
-      color: #007bff;
+      color: #090342;
       cursor: pointer;
       transition: color 0.3s;
     }
 
     .header-icons i:hover {
       color: #0056b3;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #007bff;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .header p {
+      color: #6c757d;
+      font-size: 18px;
     }
 
     .card {
@@ -84,11 +98,6 @@
       border-color: #0056b3;
     }
 
-    .icon {
-      font-size: 24px;
-      margin-right: 10px;
-    }
-
     .service {
       text-align: center;
       margin-bottom: 20px;
@@ -112,16 +121,15 @@
       font-size: 16px;
     }
 
-   .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+    /* Footer styles */
+    .footer {
       background-color: #343a40;
       color: #fff;
       padding: 20px 0;
       text-align: center;
       border-radius: 15px;
+      position: relative;
+      margin-top: 20px;
     }
 
     .footer-nav {
@@ -131,49 +139,104 @@
     }
 
     .footer-nav a {
-      color: #fff;
+      color: #04000f;
       text-decoration: none;
       margin: 0 15px;
+      padding: 10px 15px;
       transition: color 0.3s;
     }
 
     .footer-nav a:hover {
-      color: #ffc107;
+      color: #6166aa;
     }
 
     .footer-icons {
       font-size: 24px;
-      margin: 0 15px;
-      color: #fff;
+      color: #0b0338;
       transition: transform 0.3s;
     }
 
     .footer-icons:hover {
       transform: translateY(-3px);
     }
+
+    /* Account Overview */
+    .account {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .account-type {
+      flex-grow: 1;
+    }
+
+    .account-balance {
+      font-size: 20px;
+      font-weight: bold;
+      display: none; /* Initially hide */
+    }
+
+    .badge {
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 20px;
+    }
+
+    .badge-primary {
+      background-color: #007bff;
+    }
+
+    .badge-success {
+      background-color: #28a745;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1><i class="fas fa-piggy-bank icon"></i>Nexus Bank Wallet</h1>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="color: #0b0338;"><i class="fas fa-piggy-bank mr-2"></i>Nexus Bank Wallet</a>
       <div class="header-icons">
-        <i class="fas fa-bell"></i>
+        <i class="fas fa-bell mr-3"></i>
+        <i class="fas fa-user-circle"></i>
       </div>
     </div>
+  </nav>
 
-    <h3 style="color: #1067a1;">Welcome John Doe,</h3>
+  <!-- Main content -->
+  <div class="container">
+    <div class="header">
+      <h1 style="color: #0b0338;">Welcome John Doe</h1>
+      <p>Manage your finances with ease.</p>
+    </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <h2><i class="fas fa-money-check-alt icon"></i> Accounts Overview</h2>
+          <h2 style="color: #0b0338;"><i class="fas fa-money-check-alt"></i> Accounts Overview</h2>
           <div class="card-content">
-            <p><strong>Checking Account:</strong> $5,000.00</p>
-            <p><strong>Savings Account:</strong> $10,000.00</p>
+            <div class="account">
+              <div class="account-type">
+                <span class="badge badge-primary" style="color: #0b0338;">Checking Account</span>
+              </div>
+              <div class="account-balance">$5,000.00</div>
+            </div>
+            <div class="account">
+              <div class="account-type">
+                <span class="badge badge-success">Savings Account</span>
+              </div>
+              <div class="account-balance">$10,000.00</div>
+            </div>
+            <!-- Toggle button to show/hide balances -->
+            <button class="btn btn-link" id="toggleBalancesBtn" onclick="toggleBalances()">Show Balances</button>
           </div>
         </div>
+      </div>
+      <div class="col-md-6">
         <div class="card">
-          <h2><i class="fas fa-exchange-alt icon"></i> Transactions</h2>
+          <h2 style="color: #0b0338;"><i class="fas fa-exchange-alt"></i> Transactions</h2>
           <div class="card-content">
             <p>Recent Transactions:</p>
             <ul>
@@ -181,31 +244,7 @@
               <li><span class="text-danger"><i class="fas fa-times-circle"></i></span> 02/01/2024 - $50.00 - Gas Refill</li>
               <li><span class="text-success"><i class="fas fa-check-circle"></i></span> 03/01/2024 - $200.00 - Utility Bill Payment</li>
             </ul>
-            <a href="#" class="btn btn-primary"><i class="fas fa-history"></i> View Transaction History</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <h2><i class="fas fa-exchange-alt icon"></i> Transfer Funds</h2>
-          <div class="card-content">
-            <a href="nextransfer.html" class="btn btn-primary btn-block">Nexus to Nexus</a>
-            <br>
-            <div class="transfer-options">
-              <a href="transfers.html" class="btn btn-primary btn-block" style="background-color: green;">Nexus to Other Banks <i class="fas fa-exchange-alt"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <h2><i class="fas fa-credit-card icon"></i> Pay Bills</h2>
-          <div class="card-content">
-            <button class="btn btn-primary btn-block">Pay Bills</button>
-          </div>
-        </div>
-        <div class="card">
-          <h2><i class="fas fa-plus icon"></i> Add money</h2>
-          <div class="card-content">
-            <button class="btn btn-primary btn-block">Add money</button>
+            <a href="#" class="btn btn-primary"><i class="fas fa-history mr-2" style="color: #0b0338;"></i> View Transaction History</a>
           </div>
         </div>
       </div>
@@ -252,15 +291,40 @@
     </div>
   </div>
 
-   <!-- Footer -->
-   <footer class="footer">
-    <div class="footer-nav">
-      <a href="dashboard.html"><i class="fas fa-home footer-icons"></i>Home</a>
-      <a href="#"><i class="fas fa-chart-line footer-icons"></i>Invest</a>
-      <a href="lending.html"><i class="fas fa-hand-holding-usd footer-icons"></i>Borrow</a>
-      <a href="#"><i class="fas fa-credit-card footer-icons"></i>Card</a>
-      <a href="#"><i class="fas fa-user-circle footer-icons"></i>Profile</a>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-nav">
+        <a href="dashboard.html"><i class="fas fa-home footer-icons"></i>Home</a>
+        <a href="#"><i class="fas fa-chart-line footer-icons"></i>Invest</a>
+        <a href="lending.html"><i class="fas fa-hand-holding-usd footer-icons"></i>Borrow</a>
+        <a href="#"><i class="fas fa-credit-card footer-icons"></i>Card</a>
+        <a href="#"><i class="fas fa-user-circle footer-icons"></i>Profile</a>
+      </div>
     </div>
   </footer>
+
+  <!-- JavaScript libraries -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- JavaScript for toggling balances -->
+  <script>
+    function toggleBalances() {
+      var balances = document.getElementsByClassName('account-balance');
+      var toggleBtn = document.getElementById('toggleBalancesBtn');
+
+      for (var i = 0; i < balances.length; i++) {
+        if (balances[i].style.display === 'none') {
+          balances[i].style.display = 'block';
+          toggleBtn.textContent = 'Hide Balances';
+        } else {
+          balances[i].style.display = 'none';
+          toggleBtn.textContent = 'Show Balances';
+        }
+      }
+    }
+  </script>
 </body>
 </html>
